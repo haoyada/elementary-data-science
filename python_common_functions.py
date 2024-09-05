@@ -20,7 +20,7 @@ df.to_csv(output_path)
 file_name = 'example.xlsx'
 merged_df.to_excel(file_name, sheet_name='sheet name')
 
-##use openpyxl to read and write:
+## use openpyxl to read and write:
 # Read all sheets from the Excel file into a dictionary
 all_sheets = pd.read_excel(input_path, sheet_name=None, index_col=0, engine='openpyxl', dtype={'Ticker': str})
 # Extract the list of dataframes from the dictionary
@@ -32,49 +32,49 @@ with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
 
 
 ############################################################################## 
-#Data Exploration
+# Data Exploration
 ##############################################################################
 
-#rows and columns returns (rows, columns)
+# rows and columns returns (rows, columns)
 data.shape
 
-#returns the first x number of rows when head(num). Without a number it returns 5
+# returns the first x number of rows when head(num). Without a number it returns 5
 data.head()
 
-#returns the last x number of rows when tail(num). Without a number it returns 5
+# returns the last x number of rows when tail(num). Without a number it returns 5
 data.tail()
 
-#returns an object with all of the column headers 
+# returns an object with all of the column headers 
 data.columns
 
-#basic information on all columns 
+# basic information on all columns 
 data.info()
 
-#gives basic statistics on numeric columns
+# gives basic statistics on numeric columns
 data.describe()
 
-#shows what type the data was read in as (float, int, string, bool, etc.)
+# shows what type the data was read in as (float, int, string, bool, etc.)
 data.dtypes
 
-#shows which values are null
+# shows which values are null
 data.isnull()
 
-#shows which columns have null values
+# shows which columns have null values
 data.isnull().any()
 
-#shows for each column the percentage of null values 
+# shows for each column the percentage of null values 
 data.isnull().sum() / data.shape[0]
 
-#plot histograms for all numeric columns 
+# plot histograms for all numeric columns 
 data.hist() 
 
 
 ############################################################################## 
-#Data Manipulation
+# Data Manipulation
 ##############################################################################
 
 # rename columns 
-data.rename(index=str columns={'col_oldname':'col_newname'})
+data.rename(index=str, columns={'col_oldname':'col_newname'})
 
 # view all rows for one column
 data.col_name 
@@ -84,15 +84,15 @@ data['col_name']
 data[['col1','col2']]
 data.loc[:['col1','col2']]
 
-#columns by index 
+# columns by index 
 data.iloc[:,[0:2]]
 
 # drop columns 
 data.drop('colname', axis =1) #add inplace = True to do save over current dataframe
-#drop multiple 
+# drop multiple 
 data.drop(['col1','col2'], axis =1)
 
-#lambda function 
+# lambda function 
 data.apply(lambda x: x.colname**2, axis =1)
 
 # pivot table 
@@ -101,5 +101,3 @@ pd.pivot_table(data, index = 'col_name', values = 'col2', columns = 'col3')
 # merge  == JOIN in SQL
 pd.merge(data1, data2, how = 'inner' , on = 'col1')
 
-# write to csv 
-data.to_csv('data_out.csv')
